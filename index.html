@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-LEARNING - Sustainability @ School</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #e0f7fa;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 800px;
+      width: 90%;
+      margin: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2e7d32;
+      text-shadow: 1px 1px #81c784;
+    }
+    .section {
+      padding: 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      background: linear-gradient(135deg, #ffffff, #a5d6a7);
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 12px 18px;
+      margin: 8px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: transform 0.2s;
+    }
+    button:hover {
+      transform: scale(1.1);
+    }
+    .game-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: #f1f8e9;
+      border-radius: 8px;
+      display: none;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    ul li {
+      margin: 8px 0;
+      font-size: 18px;
+    }
+    .trees {
+      font-size: 2rem;
+      margin: 15px 0;
+    }
+    .score {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>📚 E-LEARNING</h1>
+    <p style="font-size:18px; color:#00695c;">Learn sustainability with interactive mini-games!</p>
+
+    <!-- Important Information -->
+    <div class="section">
+      <h2>📢 Important Information</h2>
+      <ul>
+        <li>♻️ Sort waste into correct bins: Compost, Recycling, Trash.</li>
+        <li>💧 Save water by turning off taps when not in use.</li>
+        <li>💡 Save electricity by switching off lights and devices when not needed.</li>
+        <li>🌳 Plant and take care of trees to help the environment.</li>
+      </ul>
+    </div>
+
+    <!-- Tree Question Section -->
+    <div class="section">
+      <h2>🌳 Tree Question</h2>
+      <p class="trees">🌳🌳🌳🌳🌳</p>
+      <p style="font-size:18px;">How many trees are shown above?</p>
+      <button onclick="checkTrees(5)">5</button>
+      <button onclick="checkTrees(3)">3</button>
+      <button onclick="checkTrees(4)">4</button>
+      <p id="treeAnswer" class="score"></p>
+    </div>
+
+    <!-- Waste Sorting Game -->
+    <div class="section">
+      <h2>♻️ Waste Sorting Game</h2>
+      <p style="font-size:18px;">Select the correct bin for each item:</p>
+      <button onclick="startWasteGame()">Start Game</button>
+      <div id="wasteGame" class="game-box"></div>
+    </div>
+
+    <!-- Water Saver Game -->
+    <div class="section">
+      <h2>💧 Water Saver Game</h2>
+      <p style="font-size:18px;">Select all actions that save water:</p>
+      <button onclick="startWaterGame()">Start Game</button>
+      <div id="waterGame" class="game-box"></div>
+    </div>
+
+    <!-- Electricity Saver Game -->
+    <div class="section">
+      <h2>💡 Electricity Saver Game</h2>
+      <p style="font-size:18px;">Select all actions that save electricity:</p>
+      <button onclick="startElectricityGame()">Start Game</button>
+      <div id="electricityGame" class="game-box"></div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tree Question
+    function checkTrees(answer) {
+      const correct = 5;
+      const display = document.getElementById('treeAnswer');
+      if(answer === correct) {
+        display.textContent = '✅ Correct! There are 5 trees.';
+        display.style.color = 'green';
+      } else {
+        display.textContent = '❌ Try again!';
+        display.style.color = 'red';
+      }
+    }
+
+    // Waste Sorting Game
+    function startWasteGame() {
+      const game = document.getElementById('wasteGame');
+      game.style.display = 'block';
+      game.innerHTML = `
+        <p>🍌 Banana peel:</p>
+        <button onclick="alert('✅ Correct! Compost it.')">🍃 Compost</button>
+        <button onclick="alert('❌ Try again!')">♻️ Recycling</button>
+        <button onclick="alert('❌ Try again!')">🗑️ Trash</button>
+        <p>📄 Paper:</p>
+        <button onclick="alert('❌ Try again!')">🍃 Compost</button>
+        <button onclick="alert('✅ Correct! Recycle it.')">♻️ Recycling</button>
+        <button onclick="alert('❌ Try again!')">🗑️ Trash</button>
+      `;
+    }
+
+    // Water Saver Game
+    function startWaterGame() {
+      const game = document.getElementById('waterGame');
+      game.style.display = 'block';
+      game.innerHTML = `
+        <p>Actions:</p>
+        <button onclick="alert('✅ Correct! Turn off tap.')">💧 Turn off tap</button>
+        <button onclick="alert('✅ Correct! Use bucket.')">🪣 Use bucket for washing</button>
+        <button onclick="alert('❌ Try again!')">🚰 Let water run</button>
+      `;
+    }
+
+    // Electricity Saver Game
+    function startElectricityGame() {
+      const game = document.getElementById('electricityGame');
+      game.style.display = 'block';
+      game.innerHTML = `
+        <p>Actions:</p>
+        <button onclick="alert('✅ Correct! Switch off lights.')">💡 Switch off lights</button>
+        <button onclick="alert('✅ Correct! Use fan instead of AC.')">🌀 Use fan</button>
+        <button onclick="alert('❌ Try again!')">💡 Leave lights on</button>
+        <button onclick="alert('❌ Try again!')">❄️ Keep AC on</button>
+      `;
+    }
+  </script>
+
+</body>
+</html>
